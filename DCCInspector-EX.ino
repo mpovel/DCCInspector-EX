@@ -117,6 +117,13 @@
 // Configurable parameter items now in separate include file.
 #include "Config.h"
 
+#include <SimpleSyslog.h>
+
+#define SYSLOG_SERVER   "192.168.178.105"
+#define APPLICATION "ESP-DCCSniffer"
+
+SimpleSyslog syslog("ESP-DCC","Sniff",SYSLOG_SERVER);
+
 ////////////////////////////////////////////////////////
 
 #if defined(USE_DIO2) && (defined(ARDUINO_UNO_NANO) || defined(ARDUINO_MEGA))
@@ -1022,6 +1029,7 @@ void DecodePacket(Print &output, int inputPacket, bool isDifferentPacket) {
 
     // Also print to USB serial, and dump packet in hex.
     output.println(decodedPacket);
+    syslog.printf(FAC_LOCAL7, PRI_ERROR, (char*)"DCC: %s",decodedPacket);
   }
 }
 
