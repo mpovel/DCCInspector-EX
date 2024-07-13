@@ -68,7 +68,7 @@
   #elif defined(ARDUINO_MEGA)
     #define INPUTPIN 49
   #elif defined(ESP32)
-    #define INPUTPIN 5
+    #define INPUTPIN 4
   #else
     // Assume timer not supported, use default pin
     #undef USETIMER
@@ -76,7 +76,7 @@
   #endif
 #else
   #if defined(ESP32) 
-    #define INPUTPIN 5
+    #define INPUTPIN 4
   #else
     #define INPUTPIN 2
   #endif
@@ -100,6 +100,13 @@
   #define OLED_I2CADDRESS 0x3C
   #define SCREEN_WIDTH 128
   #define SCREEN_HEIGHT 64
+#elif defined(ESP32)
+  #define SDA_OLED 21
+  #define SCL_OLED 22
+  #define OLED_RESET -1
+  #define OLED_I2CADDRESS 0x3C
+  #define SCREEN_WIDTH 128
+  #define SCREEN_HEIGHT 64  
 #else                   // Other boards - edit as appropriate.
   #define SDA_OLED 4
   #define SCL_OLED 5
